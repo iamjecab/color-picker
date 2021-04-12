@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -37,8 +37,6 @@ const Weight = styled.h4`
 const Hex = styled.h4``;
 
 const Colors = ({ colorList }) => {
-    const [copyAlert, setCopyAlert] = useState(false);
-
     return (
         <>
             <Container>
@@ -51,7 +49,6 @@ const Colors = ({ colorList }) => {
                             type={type}
                             onClick={() => {
                                 navigator.clipboard.writeText(`#${hex}`);
-                                setCopyAlert(true);
                             }}
                         >
                             <Weight>{weight}%</Weight>
