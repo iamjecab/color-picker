@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -36,16 +36,24 @@ const Weight = styled.h4`
 
 const Hex = styled.h4``;
 
-// const CopyText = styled.p``;
+const Colors = ({ colorList }) => {
+    const [copyAlert, setCopyAlert] = useState(false);
 
-const Color = ({ colorList }) => {
     return (
         <>
             <Container>
                 {colorList.map((color, index) => {
                     const { type, weight, hex } = color;
                     return (
-                        <Card key={index} color={color} type={type}>
+                        <Card
+                            key={index}
+                            color={color}
+                            type={type}
+                            onClick={() => {
+                                navigator.clipboard.writeText(`#${hex}`);
+                                setCopyAlert(true);
+                            }}
+                        >
                             <Weight>{weight}%</Weight>
                             <Hex>#{hex}</Hex>
                         </Card>
@@ -56,4 +64,4 @@ const Color = ({ colorList }) => {
     );
 };
 
-export default Color;
+export default Colors;
